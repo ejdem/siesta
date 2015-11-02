@@ -4,7 +4,6 @@ class CreateStudents < ActiveRecord::Migration
       t.string  :name
       t.string  :surname
       t.integer :album
-      t.char   :semester
 
       t.timestamps null: false
     end
