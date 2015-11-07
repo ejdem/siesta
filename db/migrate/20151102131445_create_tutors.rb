@@ -3,6 +3,7 @@ class CreateTutors < ActiveRecord::Migration
     create_table :tutors do |t|
       t.string :name
       t.string :surname
+      t.string :email
 
       t.timestamps null: false
     end
