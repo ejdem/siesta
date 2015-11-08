@@ -3,8 +3,9 @@ Rails.application.routes.draw do
 
   get 'cotanct' => 'pages#contact'
   get 'about'   => 'pages#about'
-  get 'help'    => 'pages/help'
+  get 'help'    => 'pages#help'
   get 'signup'  => 'students#new'
+  resources :students
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
