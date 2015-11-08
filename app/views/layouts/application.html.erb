@@ -13,15 +13,17 @@
 </head>
 <body>
 	<%= render 'partials/navbar' %>
-	</div>
 	<div class="container">
-		<%= yield %>
+	    <%= flash.each do |message_type, message| %>
+	      <div class="alert alert-<%= message_type %>">
+	        <%= message %>
+	      </div>
+	    <% end %>
+	<%= yield %>
 	</div>
-
-
   <script data-main="assets3/js/main-built.js" src="assets3/js/lib/require.js" ></script>
   <script src="http://code.jquery.com/jquery.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/js/bootstrap.min.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/js/bootstrap.min.js"></script>
 </body>
 </html>
