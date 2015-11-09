@@ -1,0 +1,18 @@
+<% provide(:title, "log in") %>
+<h1>log in now!</h1>
+
+<div class="row">
+    <div class="col-md-6 col-md-offset-2">
+        <%= form_for(:session, url: login_path) do |form| %>
+          <%= form.label    :email %>
+          <%= form.email_field :email, class: 'form-control' %>
+          
+          <%= form.label          :password %>
+          <%= form.password_field :password, class: 'form-control' %><br/>
+          
+          <%= form.submit "log in", class: "btn btn-prmiary" %><br />
+        <% end %>
+        
+        <p>New? so maybe try to <%= link_to "sign up now!", signup_path %></p>
+    </div>
+</div>

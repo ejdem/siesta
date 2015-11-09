@@ -11,7 +11,8 @@ class StudentsController < ApplicationController
     def create
         @student = Student.new(student_params)
         if @student.save
-            flash[:success] = "welcome to SIESTA"
+            flash[:success] = "welcome to SIESTA, activation email sent."
+            log_in @student #to be deleted
             redirect_to @student
         else
             render 'new'

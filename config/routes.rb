@@ -1,10 +1,16 @@
 Rails.application.routes.draw do
+  get 'sessions/new'
+
   root 'pages#home'
 
-  get 'cotanct' => 'pages#contact'
-  get 'about'   => 'pages#about'
-  get 'help'    => 'pages#help'
-  get 'signup'  => 'students#new'
+  get    'cotanct' => 'pages#contact'
+  get    'about'   => 'pages#about'
+  get    'help'    => 'pages#help'
+  get    'signup'  => 'students#new'
+  get    'login'   => 'sessions#new'
+  post   'login'   => 'sessions#create'
+  delete 'logout'  => 'sessions#destroy'
+  
   resources :students
 
   # The priority is based upon order of creation: first created -> highest priority.
