@@ -1,5 +1,10 @@
 class PagesController < ApplicationController
   def home
+    if logged_in?
+      
+    else
+      
+    end
   end
 
   def contact

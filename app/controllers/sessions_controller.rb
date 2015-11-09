@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     student = Student.find_by(email: params[:session][:email].downcase)
     if student && student.authenticate(params[:session][:password])
       log_in student
-      redirect_to student
+      redirect_to student #root_url
     else
       flash.now[:danger] = 'invalid email or password'
       render 'new'
