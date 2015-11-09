@@ -1,0 +1,5 @@
+<h1>siesta</h1>
+<p>Hello <%= @user.name %>,</p>
+<p>Welcome to Siesta app!
+   Click below to activate your account:</p>
+<%= link_to "Activate", edit_account_activation_url(@user.activation_token, email: @user.email) %>

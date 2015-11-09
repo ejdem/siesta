@@ -1,0 +1,4 @@
+Welcome <%= @user.name %>,
+I am glad to inform you that your registarion form passed well, last step is to activate your account.
+To do this, click below:
+<%= edit_account_activation_url(@user.actvation_token, email: @user.email) %>
