@@ -1,4 +1,4 @@
-class Student < ActiveRecord::Base
+class User < ActiveRecord::Base
     attr_accessor :remember_token, :activation_token
     before_save { email.downcase! }
     EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
@@ -9,19 +9,19 @@ class Student < ActiveRecord::Base
     has_secure_password
     validates :password, presence: true, length: { minimum: 6 }
     
-    def Student.digest(string)
+    def User.digest(string)
         cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
                                                       BCrypt::Engine.cost
         BCrpyt::Pasword.create(string, cost: cost)
     end
     
-    def Student.new_token
+    def User.new_token
         SecureRandom.urlsafe_base64
     end
     
-    def remember_token
-        self.remember_token = Student.new_token
-        update_attribure(:remember_digest, Student.digest(remember_token))
+    def remember
+        self.remember_token = User.new_token
+        update_attribure(:remember_digest, User.digest(remember_token))
     end
     
     def authenticated?(remember_token)

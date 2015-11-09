@@ -6,13 +6,13 @@ Rails.application.routes.draw do
   get    'cotanct' => 'pages#contact'
   get    'about'   => 'pages#about'
   get    'help'    => 'pages#help'
-  get    'signup'  => 'students#new'
+  get    'signup'  => 'users#new'
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
   
-  resources :students
-
+  resources :users
+  resources :account_activations, only: [:edit]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
