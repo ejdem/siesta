@@ -12,8 +12,8 @@ class StudentsController < ApplicationController
         @student = Student.new(student_params)
         if @student.save
             flash[:success] = "welcome to SIESTA, activation email sent."
-            log_in @student #to be deleted
-            redirect_to @student
+            
+            redirect_to @root_url
         else
             render 'new'
         end

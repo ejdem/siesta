@@ -1,3 +1,4 @@
+=begin
 User.create!(name:  "admin",
              email: "admin@siesta.com",
              password:              "admin1",
@@ -5,3 +6,4 @@ User.create!(name:  "admin",
              admin:     true,
              activated: true,
              activated_at: Time.zone.now)
+=end

@@ -10,11 +10,6 @@ class User < ActiveRecord::Base
     has_secure_password
     validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
     
-    def authenticated?(attribute, token)
-        digest = send("#{attribute}_digest")
-        return false if digest.nil?
-        BCrypt::Password.new(digest).is_password?
-    end
     def User.digest(string)
         cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
                                                       BCrypt::Engine.cost
@@ -30,8 +25,14 @@ class User < ActiveRecord::Base
         update_attribute(:remember_digest, User.digest(remember_token))
     end
     
-    def authenticated?(remember_token)
-        BCrpyt::Password.new(remember_digest).is_password?(remember_token)
+    def forget
+        update_attribute(:remember_digest, nil)
+    end
+    
+    def authenticated?(attribute, token)
+        digest = send("#{attribute}_digest")
+        return false if digest.nil?
+        BCrypt::Password.new(digest).is_password?(token)
     end
     
     def activate
@@ -42,6 +43,7 @@ class User < ActiveRecord::Base
     def send_activation_email
         UserMailer.account_activation(self).deliver_now
     end
+    
     private
     
     def downcase_email
