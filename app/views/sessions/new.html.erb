@@ -8,11 +8,20 @@
           <%= form.email_field :email, class: 'form-control' %>
           
           <%= form.label          :password %>
-          <%= form.password_field :password, class: 'form-control' %><br/>
+          <%= form.password_field :password, class: 'form-control' %>
+          <%= link_to "(forgot password?)", new_password_reset_path %><br />
           
-          <%= form.submit "log in", class: "btn btn-prmiary" %><br />
+          
+         
+          <%= form.check_box :remember_me%> remember me</br></br>
+          
+          <%= form.submit "log in", class: "btn btn-primary" %><br /><br >
         <% end %>
-        
-        <p>New? so maybe try to <%= link_to "sign up now!", signup_path %></p>
     </div>
+</div>
+<div class="row">
+    <div class="col-md-6 col-md-offset-2">
+       <p>New here?<br /><%= link_to "sign up now!", signup_path, class: "btn btn-primary btn-sm" %></p> 
+    </div>
+    
 </div>
