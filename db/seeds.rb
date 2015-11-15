@@ -10,7 +10,6 @@ User.create!(name:                  "tutor",
              password:              "tutor1",
              password_confirmation: "tutor1")
 
-=begin
 3.times do |n|
     name     = Faker::Name.name
     email    = "tutor-#{n+1}@polsl.pl"
@@ -22,4 +21,15 @@ User.create!(name:                  "tutor",
                  activated:             true,
                  activated_at:          Time.zone.now)
 end
-=end
+
+50.times do |n|
+    name     = Faker::Name.name
+    email    = "user-#{n+1}@polsl.pl"
+    password = "password"
+    User.create!(name:                  name,
+                 email:                 email,
+                 password:              password,
+                 password_confirmation: password,
+                 activated:             true,
+                 activated_at:          Time.zone.now)
+end
