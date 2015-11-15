@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="col-md-6 col-offset-3">
+        <h4><%= @subject.name %>, <%= @subject.ects %></h4>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 col-offset-3">
+        <p><%= @subject.description %></p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 col-offset-3">
+    <% if logged_in_tutor? %>
+      <%= link_to "edit", "#", class:"btn btn-primary" %>
+    <% end %>
+    <% if current_user.admin? && !current_user?(user) %>|
+      <%= link_to "delete", @subject, method: :delete,
+                            class: "btn btn-danger",
+                            data: { confirm: "are you sure?" } %>
+    <% end %>
+    </div>
+</div>

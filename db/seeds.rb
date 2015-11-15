@@ -34,9 +34,11 @@ end
                  activated_at:          Time.zone.now)
 end
 
-10.times do |n|
-    name = Faker::Lorem.words(3).join(" ")
-    desc = Faker::Lorem.sentences(2).join(".")
-    Subject.create!(name:        name,
-                    description: desc)
+20.times do |n|
+    _name = Faker::Lorem.words(3).join(" ")
+    _desc = Faker::Lorem.sentences(2).join(". ")
+    _ects = Random.new.rand(0..10)
+    Subject.create!(name:        _name,
+                    description: _desc,
+                    ects:        _ects)
 end

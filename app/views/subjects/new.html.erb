@@ -9,6 +9,9 @@
   
           <%= form.label      :description %>
           <%= form.text_area :description, class: "form-control" %>
+          
+          <%= form.label        :ects %>
+          <%= form.number_field :ects, class: "form-control" %>
   
           <%= form.submit "Create new subject", class: "btn btn-primary" %>
         <% end %>

@@ -1,16 +1,13 @@
 <% provide(:title, 'all subjects') %>
 <div class="row">
     <div class="col-md-6 col-offset-3">
-        <%= will_paginate %>
-        <ul>
+        <%= will_paginate %>  
+        <div class="list-group">
             <% @subjects.each do |subject| %>
-              <li><%= link_to subject.name %></li>
-              <% if current_user.admin? && !current_user?(user) %>
-              <%= link_to "delete", user, method: :delete,
-                            data: { confirm: "sure?" } %>
-              <% end %></li>
+              <li class="list-group-item"><%= link_to subject.name, subject  %>
+</li>
             <% end %>
-        </ul>
+        </div>
         <%= will_paginate %>
     </div>
 </div>
