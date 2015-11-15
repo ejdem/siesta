@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
     attr_accessor :remember_token, :activation_token, :reset_token
     before_save   :downcase_email
-    before_save   :check_if_tutor
+    after_save   :check_if_tutor
     before_create :create_activation_digest
     EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
     validates :name,  presence: true, length: { maximum: 50  }
@@ -60,12 +60,10 @@ class User < ActiveRecord::Base
     end
     
     def check_if_tutor
-        name = email.split('@')
-        domain = name[1]
-        if domain == "polsl.pl"
-            update_attribute(:tutor, true)
+        if  email.split('@').last == "polsl.pl"
+            update_column(:tutor, true)
         else
-            update_attribute(:tutor, false)
+            update_column(:tutor, false)
         end
     end
     

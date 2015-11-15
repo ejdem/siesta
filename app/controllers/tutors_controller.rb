@@ -1,5 +1,5 @@
 class TutorsController < ApplicationController
     
-    def newubject
+    def newsubject
     end
 end
