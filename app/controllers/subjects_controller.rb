@@ -5,10 +5,10 @@ class SubjectsController < ApplicationController
     end
     
     def create
-        @subject = Subject.new
+        @subject = Subject.new(subject_params)
         if @subject.save
             flash[:success] = "subject added"
-            redirect_to root_url
+            redirect_to @subject
         else
             render 'pages/home'
         end
@@ -25,6 +25,12 @@ class SubjectsController < ApplicationController
     def edit
     end
     
+    private
     
+    def subject_params
+        params.require(:subject).permit(:name,
+                                       :description,
+                                       :ects)
+    end
 
 end

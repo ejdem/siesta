@@ -1,17 +1,18 @@
 <% provide(:title, 'all subjects') %>
 <div class="row">
-    <div class="col-md-6 col-offset-3">
+    <div class="col-md-4 col-offset-3">
         <%= will_paginate %>  
         <div class="list-group">
             <% @subjects.each do |subject| %>
-              <li class="list-group-item"><%= link_to subject.name, subject  %>
-</li>
+              <li class="list-group-item"><%= link_to subject.name, subject %></li>
             <% end %>
         </div>
         <%= will_paginate %>
     </div>
 </div>
 <div class="row">
-    <%= link_to "subjects", subjects_path, class: "btn btn-primary" %>
-    <%= link_to "add subject", new_subject_path, class: "btn btn-primary" %>
+    <div class="col-md-4 col-offset-3">
+      <%= link_to "subjects", subjects_path, class: "btn btn-primary" %>
+      <%= link_to "add subject", new_subject_path, class: "btn btn-primary" %>
+    </div>
 </div>

@@ -8,15 +8,17 @@
           <%= form.text_field :name, class: "form-control" %>
   
           <%= form.label      :description %>
-          <%= form.text_area :description, class: "form-control" %>
+          <%= form.text_area  :description, class: "form-control" %>
           
           <%= form.label        :ects %>
-          <%= form.number_field :ects, class: "form-control" %>
+          <%= form.number_field :ects, class: "form-control" %><br>
   
           <%= form.submit "Create new subject", class: "btn btn-primary" %>
         <% end %>
-    </div><br/>
-</div>
+    </div><br>
+</div><br>
 <div class="row">
+    <div class="col-md-6 col-md-offset-3">
     <%= link_to "subjects", subjects_path, class: "btn btn-primary" %>
+    </div>
 </div>

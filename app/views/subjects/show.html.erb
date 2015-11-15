@@ -13,10 +13,14 @@
     <% if logged_in_tutor? %>
       <%= link_to "edit", "#", class:"btn btn-primary" %>
     <% end %>
+    <% if !logged_in_tutor? %>
+      <%= link_to "participate", "#", class:"btn btn-primary" %>
+    <% end %>
     <% if current_user.admin? && !current_user?(user) %>|
       <%= link_to "delete", @subject, method: :delete,
                             class: "btn btn-danger",
                             data: { confirm: "are you sure?" } %>
     <% end %>
+    <%= link_to "subjects", subjects_path, class: "btn btn-primary" %>
     </div>
 </div>
