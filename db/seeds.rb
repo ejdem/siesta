@@ -24,7 +24,7 @@ end
 
 50.times do |n|
     name     = Faker::Name.name
-    email    = "user-#{n+1}@polsl.pl"
+    email    = "user-#{n+1}@student.polsl.pl"
     password = "password"
     User.create!(name:                  name,
                  email:                 email,

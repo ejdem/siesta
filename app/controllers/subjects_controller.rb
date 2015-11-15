@@ -15,7 +15,6 @@ class SubjectsController < ApplicationController
     def edit
     end
     
-    def edit
-    end
+    
 
 end
