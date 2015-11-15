@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+    has_many :participations
+    has_many :subjects, :through => participations
     attr_accessor :remember_token, :activation_token, :reset_token
     before_save   :downcase_email
     after_save   :check_if_tutor
