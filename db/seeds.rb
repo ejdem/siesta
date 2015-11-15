@@ -33,3 +33,10 @@ end
                  activated:             true,
                  activated_at:          Time.zone.now)
 end
+
+10.times do |n|
+    name = Faker::Lorem.words(3).join(" ")
+    desc = Faker::Lorem.sentences(2).join(".")
+    Subject.create!(name:        name,
+                    description: desc)
+end

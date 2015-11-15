@@ -20,6 +20,7 @@
                     <li><%= link_to "profile",  current_user %></li>
                     <li><%= link_to "settings", edit_user_path(current_user) %></li>
                     <li><%= link_to "Users",    users_path %></li>
+                    <li><%= link_to "subjects", subjects_path %></li>
                   </ul>
                 </li>
                 <% else %>
@@ -29,6 +30,7 @@
                     <li><%= link_to "profile",  current_user %></li>
                     <li><%= link_to "settings", edit_user_path(current_user) %></li>
                     <li><%= link_to "Users",    users_path %></li>
+                    
                   </ul>
                 </li>
                 <% end %>

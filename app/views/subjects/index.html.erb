@@ -1,0 +1,18 @@
+<% provide(:title, 'all subjects') %>
+
+<%= will_paginate %>
+
+<ul>
+    <% @subjects.each do |subject| %>
+      <li><%= link_to subject.name %></li>
+      <% if current_user.admin? && !current_user?(user) %>
+      <%= link_to "delete", user, method: :delete,
+                            data: { confirm: "sure?" } %>
+      <% end %></li>
+    <% end %>
+</ul>
+<%= will_paginate %>
+
+
+<%= link_to "subjects", subjects_path, class: "btn btn-primary" %>
+<%= link_to "add subject", new_subject_path, class: "btn btn-primary" %>
