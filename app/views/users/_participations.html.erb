@@ -10,7 +10,7 @@
       <tbody>
       <% @user.active_participations.each do |particip| %>
         <% s_id = particip.subject_id %>
-        <% s = Subject.find(s_id) %>
+        <% s    = Subject.find(s_id) %>
         <tr>
             <td><%= s_id %></td>
             <td><%= link_to s.name, s %></td>
