@@ -1,6 +1,11 @@
 class User < ActiveRecord::Base
-    has_many :participations
-    has_many :subjects, :through => participations
+    
+    has_many :active_participations,  class_name:  "Participation",
+                                      foreign_key: "subject_id",
+                                      dependent:   :destroy
+    has_many :participated_subjects, through:     :active_participations,
+                                     source:      :participated_subject
+    
     attr_accessor :remember_token, :activation_token, :reset_token
     before_save   :downcase_email
     after_save   :check_if_tutor
@@ -69,7 +74,21 @@ class User < ActiveRecord::Base
         end
     end
     
+    def participate(subject)
+        active_participations.create(subject_id: subject.id)
+    end
+    
+    def unparticipate(subject)
+        active_participations.find_by(subject_id: subject.id).destroy
+    end
+    
+    #def participating?(subject)
+    #    participated_subjects.include?(subject)
+    #end  
+    
     private
+    
+
     
     def downcase_email
         self.email = email.downcase

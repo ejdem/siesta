@@ -46,12 +46,18 @@ class UsersController < ApplicationController
         redirect_to users_url
     end
     
+    def participating
+        @title = "participating"
+        @user  = User.find(params[:id])
+        @subjects = @user.subjects.paginate(page: params[:page])
+    end
+    
     private
         def user_params
             params.require(:user).permit(:name,
-                                            :email, 
-                                            :password, 
-                                            :password_confirmation)
+                                         :email, 
+                                         :password, 
+                                         :password_confirmation)
         end
     
         def logged_in_user

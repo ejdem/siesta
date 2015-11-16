@@ -1,10 +1,11 @@
 class ParticipationsController < ApplicationController
-    
-    def new
-        @participation = Participation.new
-    end
-    
+
     def create
-        @participation = @subject.participations.new(participation_params)
+        subject = Subject.find(params[:subject_id])
+        current_user.participate(subject)
+        redirect_to subject
     end
+    
+    private
+    
 end

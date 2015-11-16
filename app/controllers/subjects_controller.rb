@@ -1,5 +1,5 @@
 class SubjectsController < ApplicationController
-   
+   helper_method :create_participation
     def new
         @subject = Subject.new
     end
@@ -24,6 +24,8 @@ class SubjectsController < ApplicationController
     
     def edit
     end
+    
+   
     
     private
     

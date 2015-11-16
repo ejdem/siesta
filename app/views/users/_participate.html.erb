@@ -1,0 +1,5 @@
+<%= form_for(current_user.active_participations.build) do |form| %>
+  <div><%= hidden_field_tag :subject_id, @subject.id %></div>
+  <%= form.submit "add", class: "btn btn-primary" %>
+<% end %>
+<
