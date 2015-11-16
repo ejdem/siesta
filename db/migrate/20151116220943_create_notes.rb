@@ -6,10 +6,10 @@ class CreateNotes < ActiveRecord::Migration
       t.integer    :subject_id
       t.integer    :user_id
       t.string     :author
-      t.references :user, index: true, foreign_key: true
+      #t.references :user, index: true, foreign_key: true
       t.timestamps null: false
     end
     
-    add_index :notes, [:user_id, :subject_id], unique: true
+    add_index :notes, [:user_id, :subject_id]
   end
 end

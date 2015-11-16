@@ -1,35 +1,31 @@
-User.create!(name:  "admin",
-             email: "admin2@siesta.com",
+User.create!(name:                  "admin",
+             email:                 "admin@siesta.com",
              password:              "admin1",
              password_confirmation: "admin1",
-             admin:     true,
-             activated: true,
-             activated_at: Time.zone.now)
-User.create!(name:                  "tutor",
-             email:                 "tutor@polsl.pl",
-             password:              "tutor1",
-             password_confirmation: "tutor1")
+             admin:                 true,
+             activated:             true,
+             activated_at:          Time.zone.now)
 
-3.times do |n|
-    name     = Faker::Name.name
-    email    = "tutor-#{n+1}@polsl.pl"
-    password = "password"
-    User.create!(name:                  name,
-                 email:                 email,
-                 password:              password,
-                 password_confirmation: password,
+10.times do |n|
+    _name     = Faker::Name.name
+    _email    = "tutor-#{n+1}@polsl.pl"
+    _password = "password"
+    User.create!(name:                  _name,
+                 email:                 _email,
+                 password:              _password,
+                 password_confirmation: _password,
                  activated:             true,
                  activated_at:          Time.zone.now)
 end
 
 50.times do |n|
-    name     = Faker::Name.name
-    email    = "user-#{n+1}@student.polsl.pl"
-    password = "password"
-    User.create!(name:                  name,
-                 email:                 email,
-                 password:              password,
-                 password_confirmation: password,
+    _name     = Faker::Name.name
+    _email    = "user-#{n+1}@student.polsl.pl"
+    _password = "password"
+    User.create!(name:                  _name,
+                 email:                 _email,
+                 password:              _password,
+                 password_confirmation: _password,
                  activated:             true,
                  activated_at:          Time.zone.now)
 end
@@ -41,4 +37,20 @@ end
     Subject.create!(name:        _name,
                     description: _desc,
                     ects:        _ects)
+end
+
+users = User.all
+users.each do |user|
+    10.times do
+        _note1 = Random.new.rand(2..5)
+        _note2 = Random.new.rand(2..5)
+        _note  = (_note1+_note2)/2.0
+        _s_id  = Random.new.rand(1..20)
+        _a_id  = Random.new.rand(1..10)
+        _aut   = User.find(_a_id)
+        user.notes.create!(note:       _note,
+                           subject_id: _s_id,
+                           user_id:     user.id,
+                           author:     _aut.name)
+    end
 end

@@ -13,6 +13,7 @@ class UsersController < ApplicationController
     
     def show
         @user = User.find(params[:id])
+        @notes = @user.notes.all
     end
     
     def create

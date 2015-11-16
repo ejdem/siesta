@@ -22,8 +22,7 @@ ActiveRecord::Schema.define(version: 20151116220943) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "notes", ["user_id", "subject_id"], name: "index_notes_on_user_id_and_subject_id", unique: true
-  add_index "notes", ["user_id"], name: "index_notes_on_user_id"
+  add_index "notes", ["user_id", "subject_id"], name: "index_notes_on_user_id_and_subject_id"
 
   create_table "participations", force: :cascade do |t|
     t.integer  "user_id"
