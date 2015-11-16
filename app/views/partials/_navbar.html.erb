@@ -4,33 +4,26 @@
             <p class="navbar-brand"><strong><%= link_to "SIESTA", root_path, id: "logo" %></strong></p>
           </div>
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
+            <!--<ul class="nav navbar-nav">
                 <li><%= link_to "Home",   root_path %></li>
                 <li><%= link_to "Help",   help_path %></li>
-            </ul>
+            </ul>-->
             <ul class="nav navbar-nav navbar-right">
               <% if logged_in? %>
-                <% if logged_in_tutor? %>
+                <li><%= link_to "logged in as "+current_user.name,  current_user %></li>
                 <li class="dropdown">
-                  <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Tutor's menu <span class="caret"></span></a>
+                  <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">menu<span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
-                    <li><%= link_to "profile",  current_user %></li>
                     <li><%= link_to "settings", edit_user_path(current_user) %></li>
                     <li><%= link_to "Users",    users_path %></li>
                     <li><%= link_to "subjects", subjects_path %></li>
+                    <% if logged_in_tutor? %>
+                      <li>tutor</li>
+                    <% else %>
+                      <ii>student</ii>
+                    <% end %>
                   </ul>
                 </li>
-                <% else %>
-                <li class="dropdown">
-                  <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Student's menu <span class="caret"></span></a>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><%= link_to "profile",  current_user %></li>
-                    <li><%= link_to "settings", edit_user_path(current_user) %></li>
-                    <li><%= link_to "Users",    users_path %></li>
-                    <li><%= link_to "subjects", subjects_path %></li>
-                  </ul>
-                </li>
-                <% end %>
                 <li><%= link_to "Logout", logout_path, method: :delete %></li>
               <% else %>
                     <li><%= link_to "Log in", login_path%></li>

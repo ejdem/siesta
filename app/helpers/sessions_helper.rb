@@ -21,7 +21,7 @@ module SessionsHelper
     end
     
     def logged_in_tutor?
-        current_user.tutor &&  !current_user.nil?
+        current_user.tutor?# &&  !current_user.nil?
     end
     
     def remember(user)
