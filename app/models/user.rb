@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
                                       dependent:   :destroy
     has_many :participated_subjects, through:     :active_participations,
                                      source:      :participated_subject
-    
+    has_many :notes
     attr_accessor :remember_token, :activation_token, :reset_token
     before_save   :downcase_email
     after_save    :check_if_tutor
