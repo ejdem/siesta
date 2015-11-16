@@ -1,7 +1,10 @@
 <% if logged_in? %>
-  <p>hello here man!</p>
+	  <div class="jumbotron">
+	    <p>Studies Internet for Students and Tutors Application</p>
+	  </div>
 <% else %>
-<div class="jumbotron">
+  <div class="jumbotron">
+    <p>Studies Internet for Students and Tutors Application</p>
     <%= link_to "sign un now", signup_path, class: "btn btn-lg btn-primary" %>
-</div>
+  </div>
 <% end %>
