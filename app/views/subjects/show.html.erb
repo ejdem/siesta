@@ -3,18 +3,17 @@
         <h4><%= @subject.name %>, <%= @subject.ects %></h4><br>
         <p>subject id = <%= @subject.id %></p>
         <p>student id = <%= current_user.id %></p>
+        <% if current_user.participating?(@subject) %>
+          <p>you already participate in this course</p>
+        <% else %>
+          <p>you can participate in this course</p>
+        <% end %>
     </div>
 </div>
 <div class="row">
     <div class="col-md-6 col-offset-3">
         <p><%= @subject.description %></p>
-        <% if current_user.participating?(@subject) %>
-          <br><p>you already participate in this course</p>
-        <% else %>
-          <p>you can participate in this course</p>
-        <% end %>
     </div>
-
 </div>
 <div class="row">
     <div class="col-md-8 col-offset-3">
