@@ -1,5 +1,8 @@
 <% provide(:title, @user.name) %>
-<%= @user.name %>, <%= @user.email %>
-<div class="container">
-<%= render 'participations' %>
+<div class="col-md-6 col-md-offset-3"
+    <% if !@user.tutor? %>
+        <%= render 'participations' %>
+    <% else %>
+        <p>good moring mister <%= @user.name %></p>
+    <% end %>
 </div>
