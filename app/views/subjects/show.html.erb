@@ -3,10 +3,10 @@
         <h4><%= @subject.name %>, <%= @subject.ects %></h4><br>
         <p>subject id = <%= @subject.id %></p>
         <p>student id = <%= current_user.id %></p>
-        <% if current_user.participating?(@subject) %>
-          <p>you already participate in this course</p>
+        <% if current_user.participating?( @subject.id) %>
+          <p>you still not participate</p>
         <% else %>
-          <p>you can participate in this course</p>
+          <p> you already participate!</p>
         <% end %>
     </div>
 </div>
@@ -20,7 +20,7 @@
         <div class="col-md-2">
           <%= link_to "subjects", subjects_path, class: "btn btn-primary pull-right" %>
         </div>
-        <% if !logged_in_tutor? && !current_user.participating?(@subject)%>
+        <% if !logged_in_tutor? && current_user.participating?(@subject)%>
           <div class="col-md-2">
             <%= render 'users/participate' %>
           </div>

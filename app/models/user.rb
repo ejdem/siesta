@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
     
     attr_accessor :remember_token, :activation_token, :reset_token
     before_save   :downcase_email
-    after_save   :check_if_tutor
+    after_save    :check_if_tutor
     before_create :create_activation_digest
     EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
     validates :name,  presence: true, length: { maximum: 50  }
@@ -82,12 +82,9 @@ class User < ActiveRecord::Base
         active_participations.find_by(subject_id: subject.id).destroy
     end
     
-    def participating?(subject)
-        active_participations.each do |particip|
-            if particip.subject_id == subject.id
-                return true
-            end
-        end
+    def participating?(s_id)
+        #active_participations.include?(subject)
+        active_participations.find_by(subject_id: s_id).nil?
     end  
     
     private
