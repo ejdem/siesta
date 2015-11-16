@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  mark_word: MyString
+  mark: 1.5
+  user_id: 1
+  subject_id: 1
+
+two:
+  mark_word: MyString
+  mark: 1.5
+  user_id: 1
+  subject_id: 1

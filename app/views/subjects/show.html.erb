@@ -8,19 +8,35 @@
 <div class="row">
     <div class="col-md-6 col-offset-3">
         <p><%= @subject.description %></p>
+        <% if current_user.participating?(@subject) %>
+          <br><p>you already participate in this course</p>
+        <% else %>
+          <p>you can participate in this course</p>
+        <% end %>
     </div>
+
 </div>
 <div class="row">
-    <div class="col-md-6 col-offset-3">
-        <%= render 'users/participate' %>
-        <%= link_to "subjects", subjects_path, class: "btn btn-primary" %>
-        <% if logged_in_tutor? %>
-            <%= link_to "edit", "#", class:"btn btn-primary" %>
+    <div class="col-md-8 col-offset-3">
+        <div class="col-md-2">
+          <%= link_to "subjects", subjects_path, class: "btn btn-primary pull-right" %>
+        </div>
+        <% if !logged_in_tutor? && !current_user.participating?(@subject)%>
+          <div class="col-md-2">
+            <%= render 'users/participate' %>
+          </div>
         <% end %>
-        <% if current_user.admin? && !current_user?(user) %>
-          <%= link_to "delete", @subject, method: :delete,
-                                class: "btn btn-danger",
-                                data: { confirm: "are you sure?" } %>
+        <% if logged_in_tutor? %>
+          <div class="col-md-2">
+            <%= link_to "edit", "#", class:"btn btn-primary pull-center" %>
+          </div>
+        <% end %>
+        <% if current_user.admin? && !current_user?(@user) %>
+          <div class="col-md-2">
+            <%= link_to "delete", @subject, method: :delete,
+                                  class: "btn btn-danger  pull-center",
+                                  data: { confirm: "are you sure?" } %>
+          </div>
         <% end %>
     </div>
 </div>

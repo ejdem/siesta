@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
     
     has_many :active_participations,  class_name:  "Participation",
-                                      foreign_key: "subject_id",
+                                      foreign_key: "user_id",
                                       dependent:   :destroy
     has_many :participated_subjects, through:     :active_participations,
                                      source:      :participated_subject
@@ -74,17 +74,21 @@ class User < ActiveRecord::Base
         end
     end
     
-    def participate(subject)
-        active_participations.create(subject_id: subject.id)
+    def participate(subject,user)
+        active_participations.create(subject_id: subject.id, user_id: user.id)
     end
     
     def unparticipate(subject)
         active_participations.find_by(subject_id: subject.id).destroy
     end
     
-    #def participating?(subject)
-    #    participated_subjects.include?(subject)
-    #end  
+    def participating?(subject)
+        active_participations.each do |particip|
+            if particip.subject_id == subject.id
+                return true
+            end
+        end
+    end  
     
     private
     

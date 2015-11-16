@@ -1,7 +1,7 @@
 class Subject < ActiveRecord::Base
 
     has_many :active_participations, class_name:  "Participation",
-                                     foreign_key: "user_id",
+                                     foreign_key: "Subject_id",
                                     dependent:   :destroy
     has_many :participating_users,  through:     :active_participations,
                                     source:      :participating_user

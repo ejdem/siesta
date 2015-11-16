@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151115160623) do
+ActiveRecord::Schema.define(version: 20151116015502) do
+
+  create_table "marks", force: :cascade do |t|
+    t.string   "mark_word"
+    t.float    "mark"
+    t.integer  "user_id"
+    t.integer  "subject_id"
+    t.integer  "tutor_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "marks", ["subject_id"], name: "index_marks_on_subject_id"
+  add_index "marks", ["tutor_id"], name: "index_marks_on_tutor_id"
+  add_index "marks", ["user_id", "subject_id"], name: "index_marks_on_user_id_and_subject_id", unique: true
+  add_index "marks", ["user_id"], name: "index_marks_on_user_id"
 
   create_table "participations", force: :cascade do |t|
     t.integer  "user_id"

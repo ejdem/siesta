@@ -36,7 +36,7 @@ end
 
 20.times do |n|
     _name = Faker::Lorem.words(3).join(" ")
-    _desc = Faker::Lorem.sentences(2).join(". ")
+    _desc = Faker::Lorem.paragraph
     _ects = Random.new.rand(0..10)
     Subject.create!(name:        _name,
                     description: _desc,
