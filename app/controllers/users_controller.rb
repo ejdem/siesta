@@ -18,7 +18,7 @@ class UsersController < ApplicationController
         @notes.each do |n|
             @subject_ids << n.subject_id
         end
-        @subject_ids.unique
+        @subject_ids.uniq!
     end
     
     def create
