@@ -14,6 +14,11 @@ class UsersController < ApplicationController
     def show
         @user = User.find(params[:id])
         @notes = @user.notes.all
+        @subject_ids = []
+        @notes.each do |n|
+            @subject_ids << n.subject_id
+        end
+        @subject_ids.unique
     end
     
     def create
