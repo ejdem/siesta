@@ -10,6 +10,8 @@
         </tr>
       </thead>
       <tbody>
+        <% totl_avr = 0 %>
+        <% subs = @subject_ids.count %>
         <% @subject_ids.each do |s_id| %>
           <%  subject = Subject.find(s_id) %>
           <%  _notes = [] %>
@@ -20,6 +22,7 @@
             <% sum += n.note %>
           <% end %>
           <% avr = sum / c %>
+          <% totl_avr += avr %>
           <% if avr <= 2.99 %>
           <tr class="danger">
               <td><%= s_id %></td>
@@ -44,7 +47,13 @@
           <% end %>
         <% end %>
       </tbody>
-  </table> 
+  </table>
+  <% totl_avr /= subs %>
+  <% if totl_avr <= 2.99 %>
+    <h2 class="text-danger text-align"> your total average is <%= totl_avr %></h2>
+  <% else %>
+    <h3 class="text-success text-align"> your total average is <%= totl_avr %></h3>
+  <% end %><br><br>
   <p class="text-danger text-align">red - pay attension! risk of failing</p>
   <p class="text-warning text-align">yellow - try not to get to red</p>
   <p class="text-success text-align">green - congrats! you do well!</p>
