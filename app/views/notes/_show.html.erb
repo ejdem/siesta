@@ -23,26 +23,29 @@
           <% if avr <= 2.99 %>
           <tr class="danger">
               <td><%= s_id %></td>
-              <td><%= subject.name %></td>
+              <td><%= link_to subject.name, subject %></td>
               <td><%  _notes.each do |n| %><%= n.note %>, <% end %></td>
               <td><%=  avr %></td>
           </tr>
           <% elsif avr < 3.49 %>
           <tr class="warning">
               <td><%= s_id %></td>
-              <td><%= subject.name %></td>
+              <td><%= link_to subject.name, subject %></td>
               <td><%  _notes.each do |n| %><%= n.note %>, <% end %></td>
               <td><%=  avr %></td>
           </tr>
           <% else %>
           <tr class="success">
               <td><%= s_id %></td>
-              <td><%= subject.name %></td>
+              <td><%= link_to subject.name, subject %></td>
               <td><%  _notes.each do |n| %><%= n.note %>, <% end %></td>
-              <td><%=  avr %></td>
+              <td><strong><%=  avr %></strong></td>
           </tr>
           <% end %>
         <% end %>
       </tbody>
   </table> 
+  <p class="text-danger text-align">red - pay attension! risk of failing</p>
+  <p class="text-warning text-align">yellow - try not to get to red</p>
+  <p class="text-success text-align">green - congrats! you do well!</p>
 </div>
