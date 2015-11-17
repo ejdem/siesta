@@ -1,21 +1,26 @@
-<div class="col-md-8 col-md-offset-2">    
+<div class="col-md-8 col-md-offset-2"> 
+  <p>Your notes</p>
   <table class="table table-striped table-hover">
       <thead>
         <tr>
           <th>Course id</th>
           <th>Course name</th>
           <th>Notes</th>
+          <th>avarege</th>
         </tr>
       </thead>
       <tbody>
         <% @subject_ids.each do |s_id| %>
           <%  subject = Subject.find(s_id) %>
-          <%  notes = [] %>
-          <%  notes = subject.notes.where(user_id: @user.id) %>
+          <%  _notes = [] %>
+          <% sum = 0 %>
+          <%  _notes = subject.notes.where(user_id: @user.id) %>
           <tr>
               <td><%= s_id %></td>
               <td><%= subject.name %></td>
-              <td><% notes.each do |n| %> <%= n.note %> <% end %></td>
+              <td><%  _notes.each do |n| %> <%= n.note %><% sum += n.note %>, <% end %></td>
+              <% c = _notes.count %>
+              <td><%=  sum / c %></td>
           </tr>
         <% end %>
       </tbody>
