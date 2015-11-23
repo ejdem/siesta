@@ -15,7 +15,8 @@
         <thead>
           <tr>
             <th>students name</th>
-            <th>add note</th>
+            <th>note</th>
+            <th>add</th>
           </tr>
         </thead>
         <tbody>
@@ -24,13 +25,14 @@
             <% u    = User.find(u_id) %>
             <tr>
               <td><%= link_to u.name, u %></td>
-              
-              <%= form_for(u.notes.build) do |f| %>
-                <td><%= f.number_field :note , in: 2..5, :step => 0.1 %></td>
-                    <%= hidden_field_tag :subject_id, @subject.id %>
-                    <%= hidden_field_tag :user_id, u.id %>
-                    <td><%= f.submit "add", class: "btn btn-primary btn-xs" %></td>
-                  <% end %>
+              <% if logged_in_tutor? %>
+                <%= form_for(u.notes.build) do |f| %>
+                  <td><%= f.number_field :note , in: 0..5, :step => 0.1 %></td>
+                    <%= hidden_field_tag :subject_id, particip.subject_id %>
+                    <%= hidden_field_tag :user_id,    u_id %>
+                  <td><%= f.submit "add", class: "btn btn-primary btn-xs" %></td>
+                <% end %>
+              <% end %>
           <% end %>
         </tbody>
       </table>
