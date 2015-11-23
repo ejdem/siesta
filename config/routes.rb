@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
+ 
   get 'password_resets/new'
-
   get 'password_resets/edit'
-
   get 'sessions/new'
 
   root 'pages#home'
@@ -18,6 +17,8 @@ Rails.application.routes.draw do
   resources :users do
     member do
       get :participated_subjects
+      get :notes
+      post :notes
     end
   end
   resources :subjects do
@@ -29,7 +30,8 @@ Rails.application.routes.draw do
   resources :account_activations, only: [               :edit                   ]
   resources :password_resets,     only: [:new, :create, :edit, :update          ]
   resources :participations,      only: [:create, :destroy]
-  
+  resources :notes,               only: [:create, :destroy]
+   
 
 
   # The priority is based upon order of creation: first created -> highest priority.

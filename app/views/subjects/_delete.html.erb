@@ -1,0 +1,5 @@
+        <% if current_user.admin? && !current_user?(@user) %>
+            <%= link_to "delete", @subject, method: :delete,
+                                  class: "btn btn-danger",
+                                  data: { confirm: "are you sure?" } %>
+        <% end %>
