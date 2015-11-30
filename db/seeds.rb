@@ -49,9 +49,9 @@ users.drop(12).each do |u|
         a  = Random.new.rand(2..10)
         at = User.find(a)
         u.notes.create!(note:       n,
-                           subject_id: s,
-                           user_id:    u.id,
-                           author:     at.name)
+                        subject_id: s,
+                        user_id:    u.id,
+                        author:     at.name)
     end
 end
 puts "seeds 5 done!"

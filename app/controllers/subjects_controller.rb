@@ -18,7 +18,6 @@ class SubjectsController < ApplicationController
         @subject    = Subject.find(params[:id])
         @microposts = @subject.microposts.paginate(page: params[:page], per_page: 5)
         @micropost  = current_user.microposts.new if logged_in?
-        
     end
     
     def index
@@ -26,6 +25,17 @@ class SubjectsController < ApplicationController
     end
     
     def edit
+        @subject = Subject.find(params[:id])
+    end
+    
+    def update
+        @subject = Subject.find(params[:id])
+        if @subject.update_attributes(subject_params)
+            flash[:success] = "subject updated"
+            redirect_to @subject
+        else
+            render 'edit'
+        end
     end
     
    

@@ -1,9 +1,2 @@
         <h4><%= @subject.name %>, <%= @subject.ects %></h4><br>
-        <p>subject id = <%= @subject.id %></p>
-        <p>student id = <%= current_user.id %></p>
-        <% if current_user.participating?( @subject.id) %>
-          <p>you still not participate</p>
-        <% else %>
-          <p> you already participate!</p>
-        <% end %>
         <p><%= @subject.description %></p>

@@ -14,7 +14,6 @@ class NotesController < ApplicationController
         @note    = @user.notes.new(note_params)
         @note.subject_id = @subject.id
         if @note.save!
-            
             flash[:success] = "note added"
             redirect_to @subject
         else
@@ -30,4 +29,5 @@ class NotesController < ApplicationController
                                          :user_id,
                                          :note)
     end
+    
 end

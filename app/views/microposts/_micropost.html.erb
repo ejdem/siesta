@@ -1,4 +1,8 @@
-<li><strong><%= micropost.title %></strong></li>
+<% if micropost.created_at > Date.today-7.days %>
+    <li><strong>(new) <%= micropost.title %></strong></li>
+<% else %>
+    <li><%= micropost.title %></li>
+<% end %>
 <p><%= micropost.content %></p>
 <p><%= micropost.created_at %></p>
 <h6>posted by: <%= link_to micropost.author_name(micropost), micropost.find_author(micropost) %></h6><br>

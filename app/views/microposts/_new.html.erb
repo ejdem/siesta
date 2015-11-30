@@ -1,11 +1,10 @@
-<div class="col-md-offset-3 col-md-6">
+
     <% sid = @subject.id %>  
     <%= form_for(@micropost) do |f| %>
       <%= render 'partials/errors', object: @micropost %>
         <%= f.text_field :title,   placeholder: "title...",            class:'form-control' %><br>
         <%= f.text_area  :content, placeholder: "type new message...", class:'form-control' %>
         <%= hidden_field_tag :subject_id, sid %>
-        <%= hidden_field_tag :user_id,    current_user.id %>
+        <%= hidden_field_tag :user_id,    current_user.id %><br>
     <%= f.submit "post", class: "btn btn-primary form-control" %>
   <% end %>
-  </div>

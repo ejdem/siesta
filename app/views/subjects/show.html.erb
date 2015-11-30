@@ -1,43 +1,25 @@
 <% provide(:title, "subject: "+@subject.name) %>
 <div class="row">
+    <% if logged_in_tutor? %>
+      <div class="col-md-6">
+      <%= render 'notes/tab' %>
+    <% end %>
+      <%= render 'delete' %>
+    </div>
     <div class="col-md-6">
       <%= render 'description' %>
       <%= link_to "subjects", subjects_path, class: "btn btn-primary" %>
+      <% if logged_in_tutor? %>
+        <%= link_to "edit", edit_subject_path(@subject), class:"btn btn-primary" %>
+      <% end %>
+      <% if @subject.microposts.any? %>
+          <h3>posts <%= @subject.microposts.count %></h3>
+          <ol><%= render @microposts %></ol>
+          <%= will_paginate @microposts %>
+      <% end %>
+      <%= render 'microposts/new' %><br>
       <% if !logged_in_tutor? && current_user.participating?(@subject)%>
         <%= render 'users/participate' %>
       <% end %>
-      <% if logged_in_tutor? %>
-        <%= link_to "edit", "#", class:"btn btn-primary" %>
     </div>
-    <div class="col-md-6">
-      <table class="table table-striped table-hover">
-        <thead>
-          <tr>
-            <th>students name</th>
-            <th>note</th>
-            <th>add</th>
-          </tr>
-        </thead>
-        <tbody>
-          <%= render 'addnote' %>
-        </tbody>
-      </table>
-    <% end %>
-    <%= render 'delete' %>
-    </div>
-    <div class="row">
-      <div class="col-md-offset-3 col-md-6">
-        <% if @subject.microposts.any? %>
-          <h3>posts <%= @subject.microposts.count %></h3>
-          <ol>
-            <%= render @microposts %>
-          </ol>
-          <%= will_paginate @microposts %>
-        <% end %>
-      </div>
-
-    </div>
-</div>
-<div class="row">
-  <%= render 'microposts/new' %>
 </div>
