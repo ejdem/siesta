@@ -11,7 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151116220943) do
+ActiveRecord::Schema.define(version: 20151129173652) do
+
+  create_table "microposts", force: :cascade do |t|
+    t.string   "title"
+    t.text     "content"
+    t.integer  "user_id"
+    t.integer  "subject_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "microposts", ["subject_id"], name: "index_microposts_on_subject_id"
+  add_index "microposts", ["user_id", "subject_id", "created_at"], name: "index_microposts_on_user_id_and_subject_id_and_created_at"
+  add_index "microposts", ["user_id"], name: "index_microposts_on_user_id"
 
   create_table "notes", force: :cascade do |t|
     t.float    "note"

@@ -12,13 +12,31 @@ class UsersController < ApplicationController
     end
     
     def show
-        @user = User.find(params[:id])
-        @notes = @user.notes.all
+        @user        = User.find(params[:id])
+        @notes       = @user.notes.all
         @subject_ids = []
         @notes.each do |n|
             @subject_ids << n.subject_id
         end
         @subject_ids.uniq!
+        #subs       =  @subject_ids.count
+        #@totl_avr  =  0
+        #@notes2    =  []
+        #@allnotes  =  []
+        #@avrs      =  []
+        #@allnotes  << [0]
+        #@subject_ids.each do |sid|
+        #    @subject = Subject.find(sid)
+        #    @notes2   << @subject.notes.where(user_id: @user.id)
+        #    @allnotes << @notes2
+        #    sum = 0
+        #    c   = @allnotes[sid].count
+        #    @allnotes[sid].each do |n|
+        #        sum += n.note
+        #    end
+        #    @avrs << sum/c
+        #end
+        #@total_avr = @avrs.sum / subs
     end
     
     def create

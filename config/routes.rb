@@ -16,22 +16,26 @@ Rails.application.routes.draw do
   
   resources :users do
     member do
-      get :participated_subjects
-      get :notes
+      get  :participated_subjects
+      get  :notes
       post :notes
+      get  :microposts
+      post :microposts
     end
   end
   resources :subjects do
     member do
       get :participating_users
+      get  :microposts
+      post :microposts
     end
   end
     
-  resources :account_activations, only: [               :edit                   ]
-  resources :password_resets,     only: [:new, :create, :edit, :update          ]
+  resources :account_activations, only: [:edit]
+  resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :participations,      only: [:create, :destroy]
   resources :notes,               only: [:create, :destroy]
-   
+  resources :microposts,          only: [:create, :destroy]
 
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,0 +1,14 @@
+<% @subject.active_participations.each do |particip| %>
+    <% u_id = particip.user_id %>
+    <% u    = User.find(u_id) %>
+    <tr>
+        <td><%= link_to u.name, u %></td>
+        <% if logged_in_tutor? %>
+            <%= form_for(u.notes.build) do |f| %>
+            <td><%= f.number_field :note , in: 0..5, :step => 0.1 %></td>
+            <%= hidden_field_tag :subject_id, particip.subject_id %>
+            <%= hidden_field_tag :user_id,    u_id %>
+            <td><%= f.submit "add", class: "btn btn-primary btn-xs" %></td>
+            <% end %>
+        <% end %>
+<% end %>

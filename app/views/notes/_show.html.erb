@@ -28,14 +28,14 @@
               <td><%= sid %></td>
               <td><%= link_to subject.name, subject %></td>
               <td><%  _notes.each do |n| %><%= n.note %>, <% end %></td>
-              <td><%=  avr %></td>
+              <td><%=  avr.round(1) %></td>
           </tr>
           <% elsif avr < 3.49 %>
           <tr class="warning">
               <td><%= sid %></td>
               <td><%= link_to subject.name, subject %></td>
               <td><%  _notes.each do |n| %><%= n.note %>, <% end %></td>
-              <td><%=  avr %></td>
+              <td><%=  avr.round(1) %></td>
           </tr>
           <% else %>
           <tr class="success">
@@ -50,9 +50,9 @@
   </table>
   <% totl_avr /= subs %>
   <% if totl_avr <= 2.99 %>
-    <h2 class="text-danger text-align"> your total average is <%= totl_avr.round(1) %></h2>
+    <h2 class="text-danger text-align"> your total average is <%= totl_avr.round(2) %></h2>
   <% else %>
-    <h3 class="text-success text-align"> your total average is <%= totl_avr.round(1) %></h3>
+    <h3 class="text-success text-align"> your total average is <%= totl_avr.round(2) %></h3>
   <% end %><br><br>
   <p class="text-danger text-align">red - pay attension! risk of failing</p>
   <p class="text-warning text-align">yellow - try not to get to red</p>

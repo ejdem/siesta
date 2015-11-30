@@ -15,7 +15,10 @@ class SubjectsController < ApplicationController
     end
     
     def show
-        @subject = Subject.find(params[:id])
+        @subject    = Subject.find(params[:id])
+        @microposts = @subject.microposts.paginate(page: params[:page])
+        @micropost  = current_user.microposts.new if logged_in?
+        
     end
     
     def index

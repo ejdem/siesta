@@ -1,0 +1,5 @@
+<li><%= micropost.title %></li>
+<p><%= micropost.content %></p>
+<p><%= micropost.created_at %></p>
+
+<h6>posted by: <%= micropost.find_author(micropost) %></h6>
