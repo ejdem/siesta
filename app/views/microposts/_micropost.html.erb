@@ -1,5 +1,4 @@
-<li><%= micropost.title %></li>
+<li><strong><%= micropost.title %></strong></li>
 <p><%= micropost.content %></p>
 <p><%= micropost.created_at %></p>
-
-<h6>posted by: <%= micropost.find_author(micropost) %></h6>
+<h6>posted by: <%= link_to micropost.author_name(micropost), micropost.find_author(micropost) %></h6><br>
