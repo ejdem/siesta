@@ -11,18 +11,20 @@
       </thead>
       <tbody>
         <% totl_avr = 0 %>
+        <% ects_sum = 0 %>
         <% subs = @subject_ids.count %>
         <% @subject_ids.each do |sid| %>
           <%  subject = Subject.find(sid) %>
-          <%  _notes = [] %>
-          <%  _notes = subject.notes.where(user_id: @user.id) %>
-          <% sum = 0 %>
-          <% c = _notes.count %>
+          <%  _notes  = [] %>
+          <%  _notes  = subject.notes.where(user_id: @user.id) %>
+          <% sum      = 0 %>
+          <% ects_sum += subject.ects %>
+          <% c        = _notes.count %>
           <%  _notes.each do |n| %> 
             <% sum += n.note %>
           <% end %>
           <% avr = sum / c %>
-          <% totl_avr += avr %>
+          <% totl_avr += avr*subject.ects %>
           <% if avr <= 2.99 %>
           <tr class="danger">
               <td><%= sid %></td>
@@ -48,7 +50,7 @@
         <% end %>
       </tbody>
   </table>
-  <% totl_avr /= subs %>
+  <% totl_avr /= ects_sum %>
   <% if totl_avr <= 2.99 %>
     <h2 class="text-danger text-align"> your total average is <%= totl_avr.round(2) %></h2>
   <% else %>
