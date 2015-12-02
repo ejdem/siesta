@@ -1,5 +1,6 @@
 <% if micropost.created_at > Date.today-7.days %>
-    <li><strong>(new) <%= micropost.title %></strong></li>
+    <% s = Subject.find(micropost.subject_id) %>
+    <li><strong>(new) <%= micropost.title %></strong><br><%= link_to " [" + s.name + "]", s %></li>
 <% else %>
     <li><%= micropost.title %></li>
 <% end %>
