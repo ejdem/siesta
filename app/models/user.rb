@@ -2,10 +2,10 @@ class User < ActiveRecord::Base
     has_many :active_participations,  class_name:  "Participation",
                                       foreign_key: "user_id",
                                       dependent:   :destroy
-    has_many :participated_subjects, through:     :active_participations,
+    has_many :participated_subjects,  through:     :active_participations,
                                      source:      :participated_subject
     has_many :notes
-    has_many :microposts, dependent: :destroy
+    has_many :microposts,        dependent:   :destroy
     has_many :received_messages, class_name:  "Message",
                                  foreign_key: "receiver_id"
     has_many :sended_messages,   class_name:  "Message",
