@@ -13,6 +13,7 @@ class UsersController < ApplicationController
     
     def show
         @user        = User.find(params[:id])
+        @microposts  = @user.microposts.paginate(page: params[:page], per_page: 5)
         @notes       = @user.notes.all
         @subject_ids = []
         @notes.each do |n|
