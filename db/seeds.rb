@@ -7,32 +7,32 @@ User.create!(name:                  "admin",
              activated_at:          Time.zone.now)
 puts "seeds 1 done!"
 10.times do |n|
-    _name     = Faker::Name.name
-    _email    = "tutor-#{n+1}@polsl.pl"
-    _password = "password"
-    User.create!(name:                  _name,
-                 email:                 _email,
-                 password:              _password,
-                 password_confirmation: _password,
+    n     = Faker::Name.name
+    e    = "tutor-#{n+1}@polsl.pl"
+    ps = "password"
+    User.create!(name:                  n,
+                 email:                 e,
+                 password:              ps,
+                 password_confirmation: ps,
                  activated:             true,
                  activated_at:          Time.zone.now)
 end
 puts "seeds 2 done!"
 50.times do |n|
-    _name     = Faker::Name.name
-    _email    = "user-#{n+1}@student.polsl.pl"
-    _password = "password"
-    User.create!(name:                  _name,
-                 email:                 _email,
-                 password:              _password,
-                 password_confirmation: _password,
+    n  = Faker::Name.name
+    e  = "user-#{n+1}@student.polsl.pl"
+    ps = "password"
+    User.create!(name:                  n,
+                 email:                 e,
+                 password:              ps,
+                 password_confirmation: ps,
                  activated:             true,
                  activated_at:          Time.zone.now)
 end
 puts "seeds 3 done!"
 20.times do |n|
     n = Faker::Lorem.words(3).join(" ")
-    d = Faker::Lorem.paragraph
+    d = Faker::Lorem.paragraphs(2).join(" ")
     e = Random.new.rand(0..10)
     Subject.create!(name:        n,
                     description: d,
@@ -43,7 +43,7 @@ users = User.all
 users.drop(12).each do |u|
     10.times do
         n1 = Random.new.rand(1..5)
-        n2 = Random.new.rand(1..5)
+        n2 = Random.new.rand(2..5)
         n  = (n1+n2)/2.0
         s  = Random.new.rand(0..20)
         a  = Random.new.rand(2..10)

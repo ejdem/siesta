@@ -1,8 +1,8 @@
 <% provide(:title, @user.name) %>
 <div class="row">
-    <div class="col-md-6 col-md-offset-3">
+    <div class="col-md-8 col-md-offset-2">
       <% if !@user.tutor? %>
-        <%= render 'participations' %>
+        <%= render 'notes/show' %>
       <% else %>
         <h3>good moring <%= @user.name %></h3><br>
       <% end %>
@@ -15,7 +15,8 @@
     </div>
     <% if !@user.tutor? && !@user.admin? %>
       <div class="col-md-6">
-        <%= render 'notes/show' %>
+        
+        <%= render 'participations' %>
       </div>
     <% end %>
   <div class="col-md-6">
