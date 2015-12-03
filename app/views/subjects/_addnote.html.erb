@@ -4,10 +4,10 @@
     <% u    = User.find(u_id) %>
     <% users << u %>
 <% end %>
-<% users.sort_by! { |u| u.name } %>
+<% users.sort_by! { |u| u.name.split(" ").last } %>
 <% users.each do |u| %>
     <tr>
-        <td><%= link_to u.name, u %></td>
+        <td><%= link_to u.name.split(" ").last + " " + u.name.split(" ").first, u %></td>
         <% if logged_in_tutor? %>
             <%= form_for(u.notes.build) do |f| %>
                 <td><%= f.number_field :note , in: 0..5, :step => 0.1 %></td>

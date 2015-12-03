@@ -7,10 +7,10 @@ User.create!(name:                  "admin",
              activated_at:          Time.zone.now)
 puts "seeds 1 done!"
 10.times do |n|
-    n     = Faker::Name.name
-    e    = "tutor-#{n+1}@polsl.pl"
+    na = Faker::Name.name
+    e  = "tutor-#{n+1}@polsl.pl"
     ps = "password"
-    User.create!(name:                  n,
+    User.create!(name:                  na,
                  email:                 e,
                  password:              ps,
                  password_confirmation: ps,
@@ -19,10 +19,10 @@ puts "seeds 1 done!"
 end
 puts "seeds 2 done!"
 50.times do |n|
-    n  = Faker::Name.name
+    na = Faker::Name.name
     e  = "user-#{n+1}@student.polsl.pl"
     ps = "password"
-    User.create!(name:                  n,
+    User.create!(name:                  na,
                  email:                 e,
                  password:              ps,
                  password_confirmation: ps,
@@ -31,10 +31,10 @@ puts "seeds 2 done!"
 end
 puts "seeds 3 done!"
 20.times do |n|
-    n = Faker::Lorem.words(3).join(" ")
-    d = Faker::Lorem.paragraphs(2).join(" ")
-    e = Random.new.rand(0..10)
-    Subject.create!(name:        n,
+    na = Faker::Lorem.words(3).join(" ")
+    d  = Faker::Lorem.paragraphs(2).join(" ")
+    e  = Random.new.rand(0..10)
+    Subject.create!(name:        na,
                     description: d,
                     ects:        e)
 end
@@ -76,3 +76,25 @@ subjects.each do |s|
     end
 end
 puts "seeds 7 done!"
+
+users.drop(1).each do |user|
+   n = Random.new.rand(3..10) 
+   n.times do
+       t = Faker::Lorem.words(4).join(" ")
+       m = Faker::Lorem.paragraph
+       r = Random.new.rand(5..20)
+       user.sended_messages.create!(title:       t,
+                                    message:     m,
+                                    receiver_id: r)
+   end
+   n = Random.new.rand(3..10)
+   n.times do
+       t = Faker::Lorem.words(4).join(" ")
+       m = Faker::Lorem.paragraph
+       r = Random.new.rand(5..20)
+       user.received_messages.create!(title:     t,
+                                      message:   m,
+                                      sender_id: r)
+   end
+end
+puts "seeds 8 done!"

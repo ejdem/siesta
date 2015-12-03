@@ -14,6 +14,7 @@
 ActiveRecord::Schema.define(version: 20151201235732) do
 
   create_table "messages", force: :cascade do |t|
+    t.string   "title"
     t.text     "message"
     t.integer  "sender_id"
     t.integer  "receiver_id"

@@ -3,13 +3,16 @@ class User < ActiveRecord::Base
                                       foreign_key: "user_id",
                                       dependent:   :destroy
     has_many :participated_subjects,  through:     :active_participations,
-                                     source:      :participated_subject
+                                      source:      :participated_subject,
+                                      dependent:   :destroy
     has_many :notes
     has_many :microposts,        dependent:   :destroy
     has_many :received_messages, class_name:  "Message",
-                                 foreign_key: "receiver_id"
+                                 foreign_key: "receiver_id",
+                                 dependent:   :destroy
     has_many :sended_messages,   class_name:  "Message",
-                                 foreign_key: "sender_id"
+                                 foreign_key: "sender_id",
+                                 dependent:   :destroy
     attr_accessor :remember_token, :activation_token, :reset_token
     before_save   :downcase_email
     after_save    :check_if_tutor
@@ -95,9 +98,9 @@ class User < ActiveRecord::Base
         active_participations.find_by(subject_id: subject.id).destroy
     end
     
-    def participating?(s_id)
+    def participating?(sid)
         #active_participations.include?(subject)
-        active_participations.find_by(subject_id: s_id).nil?
+        self.active_participations.find_by(subject_id: sid).nil?
     end  
     
     private

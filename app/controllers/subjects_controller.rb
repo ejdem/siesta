@@ -38,7 +38,11 @@ class SubjectsController < ApplicationController
         end
     end
     
-   
+   def destroy
+        Subject.find(params[:id]).destroy
+        flash[:success] = "subject deleted"
+        redirect_to subjects_url
+   end
     
     private
     

@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       post :notes
       get  :microposts
       post :microposts
+      resources :messages
       get  :received_messages, :sended_messages
       post :sended_messages
     end

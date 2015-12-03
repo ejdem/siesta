@@ -1,7 +1,7 @@
 <% provide(:title, @user.name) %>
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
-      <% if !@user.tutor? %>
+      <% if !@user.tutor? && !@user.admin? %>
         <%= render 'notes/show' %>
       <% else %>
         <h3>good moring <%= @user.name %></h3><br>
@@ -12,19 +12,17 @@
     <div class="col-md-6">
         <h4>your mail box:</h4>
         <%= render 'partials/messagesstats' %>
+        <% if @messages_r.empty? %>
+          <p> you have no messages here</p>
+        <% else %>
+            <%= render 'messages/index' %>
+        <% end %>
     </div>
     <% if !@user.tutor? && !@user.admin? %>
       <div class="col-md-6">
-        
         <%= render 'participations' %>
       </div>
     <% end %>
   <div class="col-md-6">
-    <% if @microposts.empty? %>
-      <p> is empty</p>
-    <% else %>
-      <h4>you have added <%= @microposts.count %> posts</h4>
-      <%= render @microposts %>
-    <% end %>
   </div>
 </div>
