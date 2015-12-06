@@ -25,6 +25,18 @@ class User < ActiveRecord::Base
     has_secure_password
     validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
     
+=begin
+    def self.search(query_name)
+            if query_name
+                find(:all, :conditions => ['name LIKe ?', '%#{query_name}'])
+            else
+                find(:all)
+            end
+    end
+=end
+    def self.search(query_name)
+        where("name like ?", "%#{query_name}%")
+    end
     def listing_notes
         @notes = notes.all
         @subject_ids = []

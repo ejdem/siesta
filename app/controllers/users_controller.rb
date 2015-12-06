@@ -5,7 +5,12 @@ class UsersController < ApplicationController
     
     
     def index
-        @users = User.paginate(page: params[:page], :per_page => 10)
+        #@users = User.paginate(page: params[:page], :per_page => 10)
+        if params[:search]
+            @users = User.search(params[:search]).paginate(page: params[:page], :per_page => 10)
+        else
+            @users = User.paginate(page: params[:page], :per_page => 10)
+        end
     end
     def new
         @user = User.new
@@ -15,6 +20,7 @@ class UsersController < ApplicationController
         @user        = User.find(params[:id])
         @microposts  = @user.microposts.paginate(page: params[:page], per_page: 5)
         @notes       = @user.notes.all
+        @message     = @user.sended_messages.new if logged_in?
         @messages_r  = @user.received_messages.paginate(page: params[:page], per_page: 10)
         @messages_s  = @user.sended_messages.paginate(page: params[:page], per_page: 10)
         @subject_ids = []
@@ -22,24 +28,6 @@ class UsersController < ApplicationController
             @subject_ids << n.subject_id
         end
         @subject_ids.uniq!
-        #subs       =  @subject_ids.count
-        #@totl_avr  =  0
-        #@notes2    =  []
-        #@allnotes  =  []
-        #@avrs      =  []
-        #@allnotes  << [0]
-        #@subject_ids.each do |sid|
-        #    @subject = Subject.find(sid)
-        #    @notes2   << @subject.notes.where(user_id: @user.id)
-        #    @allnotes << @notes2
-        #    sum = 0
-        #    c   = @allnotes[sid].count
-        #    @allnotes[sid].each do |n|
-        #        sum += n.note
-        #    end
-        #    @avrs << sum/c
-        #end
-        #@total_avr = @avrs.sum / subs
     end
     
     def create
@@ -104,4 +92,6 @@ class UsersController < ApplicationController
         def admin_user
             redirect_to(root_url) unless current_user.admin?
         end
+        
+        
 end

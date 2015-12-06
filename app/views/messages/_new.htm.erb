@@ -1,0 +1,6 @@
+<%= form_for(@message) do |f| %>
+    <%= render 'partials/errors', object: @message %>
+    <%= f.text_field :title,   placeholder: "title",      class:'form-control' %>
+    <%= f.text_area  :message, placeholder: "message...", class:'form-control' %>
+    
+<% end %>
