@@ -2,7 +2,7 @@
 <h1>all users</h1>
 <div class="col-md-6 col-md-offset-3">
 <%= form_tag(users_path, :method => "get", id: "search-form") do %>
-  <%= text_field_tag :search, params[:search], placeholder: "find user..." %>
+  <%= text_field_tag :search, params[:search], placeholder: "find user...", class:"form-control" %>
   <%= submit_tag "search", :name => nil, class: "btn btn-primary" %>
 <% end %>
 <%= will_paginate %>
