@@ -1,15 +1,14 @@
 <% provide(:title, @user.name) %>
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
-      <% if !@user.tutor? && !@user.admin? %>
+      <% if !@user.tutor? && !@user.admin? && current_user == @user %>
         <%= render 'notes/show' %>
-      <% else %>
-        <h3>good moring <%= @user.name %></h3><br>
       <% end %>
     </div>
 </div>
 <div class="row">
     <div class="col-md-6">
+      <% if current_user == @user %>
         <h4>your mail box:</h4>
         <%= render 'partials/messagesstats' %>
         <% if @messages_r.empty? %>
@@ -17,6 +16,10 @@
         <% else %>
             <%= render 'messages/index' %>
         <% end %>
+      <% else %>
+        <h5><%= current_user.name %></h5>
+        <%= render 'messages/new' %>
+      <% end %>
     </div>
     <% if !@user.tutor? && !@user.admin? %>
       <div class="col-md-6">
