@@ -1,3 +1,4 @@
 <% @user ||= current_user %>
+
     <p>sended messages: <%= @user.sended_messages.count %></p>
     <p>received messages: <%= @user.received_messages.count %></p>

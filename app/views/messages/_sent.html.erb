@@ -1,7 +1,8 @@
-<ul>
-<%= will_paginate @messages_s %>
+<ul class="list-unstyled">
+
 <% @messages_s.each do |ms| %>
     <% m = Message.find(ms.id) %>
     <li><%= link_to m.title, m %></li>
 <% end %>
 </ul>
+<%= will_paginate @messages_s %>

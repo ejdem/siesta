@@ -8,10 +8,9 @@
 </div>
 <% if current_user == @user %>
 <div class="row">
-  <h4 class="center">your mail box:</h4>
-  <%= render 'partials/messagesstats' %>
+  <h4 class="text-center">your mail box:</h4>
     <div class="col-md-6">
-      <h4>messages received</h4>
+      <h4>messages received(<%= @messages_r.count %>)</h4>
         <% if @messages_r.empty? %>
           <p> you have no messages here</p>
         <% else %>
@@ -19,16 +18,22 @@
         <% end %>
     </div>
     <div class="col-md-6">
-      <h4>Messages sent:</h4>
+      <h4>Messages sent(<%= @messages_s.count %>)</h4>
         <% if @messages_s.empty? %>
           <p> you have no messages here</p>
         <% else %>
-            <%= render 'messages/received' %>
+            <%= render 'messages/sent' %>
         <% end %>
     </div>
 </div>
-<% end %>
 <div class="row">
+  <div class="col-md-8">
+    <p>compose new message here:</p>
+    <%= render 'messages/new' %>
+  </div>
+</div>
+<% end %>
+<!--<div class="row">
     <% if !@user.tutor? && !@user.admin?  %>
       <div class="col-md-6">
         <%= render 'participations' %>
@@ -36,4 +41,4 @@
     <% end %>
   <div class="col-md-6">
   </div>
-</div>
+</div>-->

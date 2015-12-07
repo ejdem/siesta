@@ -21,8 +21,8 @@ class UsersController < ApplicationController
         @microposts  = @user.microposts.paginate(page: params[:page], per_page: 5)
         @notes       = @user.notes.all
         @message     = @user.sended_messages.new if logged_in?
-        @messages_r  = @user.received_messages.paginate(page: params[:page], per_page: 10)
-        @messages_s  = @user.sended_messages.paginate(page: params[:page], per_page: 10)
+        @messages_r  = @user.received_messages.paginate(page: params[:page], per_page: 15)
+        @messages_s  = @user.sended_messages.paginate(page:   params[:page], per_page: 15)
         @subject_ids = []
         @notes.each do |n|
             @subject_ids << n.subject_id
