@@ -21,7 +21,7 @@ Rails.application.routes.draw do
       post :notes
       get  :microposts
       post :microposts
-      resources :messages
+      #resources :messages
       get  :received_messages, :sended_messages
       post :sended_messages
     end
@@ -40,8 +40,7 @@ Rails.application.routes.draw do
   resources :notes,               only: [:create, :destroy]
   resources :microposts,          only: [:create, :destroy]
   resources :messages
-  get  :received_messages, :sended_messages
-      post :sended_messages
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.

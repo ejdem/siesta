@@ -3,6 +3,7 @@
     <h3><%= @message.title %></h3><h6>(<%= @message.created_at %>)</h6>
     <p><%= @message.message %></p>
     <h6>Sended by <%= link_to @sender.name, @sender %></h6>
+    <h6>to <%= link_to @receiver.name, @receiver %></h6>
      <%= link_to "delete", @message, method: :delete,
                                      data: { confirm: "You sure?" },
                                      class: "btn btn-danger" %>
