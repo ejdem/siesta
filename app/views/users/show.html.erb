@@ -14,14 +14,14 @@
         <% if @messages_r.empty? %>
           <p> you have no messages here</p>
         <% else %>
-            <%= render 'messages/index' %>
+            <%= render 'messages/received' %>
         <% end %>
       <% else %>
         <h5><%= current_user.name %></h5>
         <%= render 'messages/new' %>
       <% end %>
     </div>
-    <% if !@user.tutor? && !@user.admin? %>
+    <% if !@user.tutor? && !@user.admin?  %>
       <div class="col-md-6">
         <%= render 'participations' %>
       </div>

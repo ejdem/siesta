@@ -2,6 +2,11 @@ class MessagesController < ApplicationController
     #include sessions_helper
     before_action :logged_in_user, only: [:create, :destroy]
     
+    def show
+        @message = Message.find(params[:id])
+        @sender  = User.find(@message.sender_id)
+    end
+    
     def create
         @user    = User.find(params[:receiver_id])
         @message_s = current_user.sended_messages.new(message_params)
@@ -22,6 +27,10 @@ class MessagesController < ApplicationController
     end
     
     def destroy
+        @message = Message.find(params[:id])
+        @message.destroy
+        flash[:success] = "Message deleted"
+        redirect_to current_user
     end
     
     private
