@@ -7,7 +7,8 @@
 <p><%= micropost.content %></p>
 <p><%= micropost.created_at %></p>
 <h6>posted by: <%= link_to micropost.author_name(micropost), micropost.find_author(micropost) %></h6><br>
-
+<% if current_user.admin? %>
   <%= link_to "delete", micropost, method: :delete,
                                    class: "btn btn-danger",
-                                   data: {confirm: "Sure?"} %>
+                                   data: {confirm: "are you sure?"} %>
+<% end %>
