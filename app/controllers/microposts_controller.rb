@@ -16,6 +16,11 @@ class MicropostsController < ApplicationController
     end
     
     def destroy
+        @post = Micropost.find(params[:id])
+        @subject = Subject.find(@post.subject_id)
+        @post.destroy
+        flash[:success] = "Message deleted"
+        redirect_to @subject
     end
     
     private

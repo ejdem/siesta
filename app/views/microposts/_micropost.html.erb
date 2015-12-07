@@ -1,9 +1,13 @@
 <% if micropost.created_at > Date.today-7.days %>
     <% s = Subject.find(micropost.subject_id) %>
-    <li><strong>(new) <%= micropost.title %></strong><br><%= link_to " [" + s.name + "]", s %></li>
+    <li><strong>(new) <%= micropost.title %></strong><br></li>
 <% else %>
     <li><%= micropost.title %></li>
 <% end %>
 <p><%= micropost.content %></p>
 <p><%= micropost.created_at %></p>
 <h6>posted by: <%= link_to micropost.author_name(micropost), micropost.find_author(micropost) %></h6><br>
+
+  <%= link_to "delete", micropost, method: :delete,
+                                   class: "btn btn-danger",
+                                   data: {confirm: "Sure?"} %>

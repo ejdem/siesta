@@ -14,9 +14,7 @@
       <%= render 'notes/tab' %>
     <% end %>
   </div>
-      
     <div class="col-md-6">
-
       <% if @subject.microposts.any? %>
           <h3>posts <%= @subject.microposts.count %></h3>
           <ol><%= render @microposts %></ol>
